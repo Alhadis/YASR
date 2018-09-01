@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: case
+# name: Case
+# group: General
+# atom-selector: .source.shell
+# --
+case ${1:\$name} in
+	${2:value})
+		$3
+	;;
+esac

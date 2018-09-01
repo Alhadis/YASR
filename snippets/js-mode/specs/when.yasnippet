@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: when
+# name: when
+# group: Specs
+# atom-selector: .source.js
+# --
+when("$1", () => {
+	it("$2", ${3:async }() => {
+		$4
+	});
+});

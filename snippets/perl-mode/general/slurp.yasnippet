@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: slurp
+# name: Slurp
+# group: General
+# atom-selector: .source.perl
+# --
+sub slurp {
+	local \$/=undef;
+	open(my \$fh, shift);
+	while(<>){ return \$_; }
+}
