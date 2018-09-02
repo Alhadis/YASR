@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# key: ie
+# name: Multiline `if/else` block
+# --
+.ie ${1:COND} \\{\\
+.	$2
+.\\}
+.el \\{\\
+.	$3
+.\\}

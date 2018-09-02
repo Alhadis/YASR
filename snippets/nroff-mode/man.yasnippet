@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# key: man
+# name: Man-page template (man-flavour)
+# --
+.TH ${1:PROGNAME} 1
+.SH NAME
+${1:progname} \\- ${2:short description}
+.SH SYNOPSIS
+.B ${1:progname}
+${3:[command-line options]
+.\\" TIP: Use the \`opt\` snippet to insert options here}
+.SH DESCRIPTION
+${4:-- Extended description --}
+.SH OPTIONS
+${5:-- Options --}
+.SH EXAMPLES
+${6:-- Examples --}
+$7
