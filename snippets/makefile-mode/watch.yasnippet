@@ -2,6 +2,7 @@
 # key: watch
 # name: Watchman
 # atom-selector: .source.makefile
+# atom-selector-label: Makefile
 # --
 watch:;   @watchman -- trigger . _ '${1:fixtures/*}' -- make all >/dev/null
 unwatch:; @watchman -- watch-del . >/dev/null

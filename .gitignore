@@ -1,0 +1,5 @@
+.DS_Store
+node_modules
+
+/snippets.cson
+/yas2atom.1
