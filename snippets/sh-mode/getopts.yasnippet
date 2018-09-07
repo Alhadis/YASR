@@ -1,0 +1,45 @@
+# -*- mode: snippet -*-
+# key: opts
+# name: Getopts boilerplate
+# atom-selector: .source.shell
+# --
+#
+# ${1:name}: ${2:Short description of your program.}
+#
+usage="\${0##*/} [-h|--help] [-v|--version] ...files"
+version='v1.0.0'
+
+# Parse command-line switches
+while [ -n "\$1" ]; do case \$1 in
+
+	# Print a brief usage summary and exit
+	-h|--help|-\\?)
+		printf 'Usage: %s\\n' "\$usage"
+		exit ;;
+	
+	# Print a version string and exit
+	-v|--version)
+		printf '%s\\n' "\$version"
+		exit ;;
+
+	# Add new switch checks here
+	${3:--option-name})
+		$4
+		break ;;
+
+	# Double-dash: Terminate option parsing
+	--)
+		shift
+		break ;;
+
+	# Invalid option: abort
+	--*|-?*)
+		>&2 printf '%s: Invalid option: "%s"\\n' "\${0##*/}" "\$1"
+		>&2 printf 'Usage: %s\\n' "\$usage"
+		exit 1 ;;
+
+	# Argument not prefixed with a dash
+	*) break ;;
+
+esac; shift
+done

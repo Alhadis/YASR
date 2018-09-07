@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# key: deps
+# name: Dependency check
+# atom-selector: .source.shell
+# --
+# Check dependencies are available
+for i in ${1:curl file}; do
+	command -v \$i 2>&1 >/dev/null || {
+		>&2 printf '%s: Required utility \`%s\` not found in \$PATH\\n' "${0##*/}" \$i
+		exit 1
+	};
+done
