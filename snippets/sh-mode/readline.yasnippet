@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# key: readline
+# name: Read file line-by-line
+# atom-selector: .source.shell
+# contributor: https://mywiki.wooledge.org/BashFAQ/001
+# --
+while IFS= read -r line; do
+	${2:printf '%s\\n' "\$line"}
+done < "${1:\$filepath}"

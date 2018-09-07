@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# key: readcsv
+# name: Read DSVs line-by-line
+# atom-selector: .source.shell
+# contributor: https://mywiki.wooledge.org/BashFAQ/001
+# --
+while IFS=${1:,} read -r ${2:first second third rest}; do
+	$4
+done < "${3:\$filepath}"
