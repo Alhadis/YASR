@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# key: which
+# name: Print location of program in PATH
+# atom-selector: .source.batchfile
+# --
+@for %%e in (%PATHEXT%) do @for %%i in (%1%%e) do @if NOT "%%~\$PATH:i"=="" echo %%~\$PATH:i

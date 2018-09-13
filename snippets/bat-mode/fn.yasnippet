@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: fn
+# name: Function
+# atom-selector: .source.batchfile
+# --
+REM ${1:Function description}
+:${2:name}
+SETLOCAL
+$3
+ENDLOCAL & SET ${4:_export=%_var%}
+EXIT /b
