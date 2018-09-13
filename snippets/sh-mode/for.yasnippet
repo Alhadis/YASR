@@ -1,9 +1,10 @@
 # -*- mode: snippet -*-
 # key: for
-# name: for
+# name: Numeric C-like `for' loop
 # atom-selector: .source.shell
 # atom-selector-label: Shell-scripts
 # --
-for i in ${1:\$@}; do
-	$2
+i=${1:FROM}; while [ "\$i" -lt ${2:TO} ]; do
+	$0
+	i=\`printf "\$i + 1" | bc\`
 done
