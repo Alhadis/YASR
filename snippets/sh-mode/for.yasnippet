@@ -6,5 +6,5 @@
 # --
 i=${1:FROM}; while [ "\$i" -lt ${2:TO} ]; do
 	$0
-	i=\`printf "\$i + 1" | bc\`
+	i=\`printf "\$i + 1\\n" | bc\`
 done
