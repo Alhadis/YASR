@@ -82,7 +82,7 @@ while(<>){
 	$body =~ s/\\(?=`)//g;                  # Unescape backticks
 	$body =~ s/\\\$(?!{?[0-9]|>)/\$/g;      # Unescape dollar signs
 	$body =~ s/`\(\)`\Z//;                  # Prune trailing newline hack
-	$body =~ s/\\(?!\${?[0-9]|>)/\\\\/g;    # Double-escape every backslash
+	$body =~ s/\\/\\\\/g;                   # Double-escape every backslash
 	
 	# Convert trailing newlines to `\n`
 	$body =~ s/\n(\n*)\Z/"\n" . ("\\n" x length $1)/e;
