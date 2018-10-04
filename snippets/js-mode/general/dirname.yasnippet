@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: dirname
+# name: `__dirname` replacement for ESM
+# group: General
+# atom-selector: .source.js
+# --
+import.meta.url.replace(/^file:\/\/|[/\\][^/\\]+$/gi, "");
