@@ -1,0 +1,44 @@
+# -*- mode: snippet -*-
+# key: exec
+# name: exec()
+# group: Utility functions
+# atom-selector: .source.js
+# --
+/**
+ * Execute an external command.
+ *
+ * Resolves to an object with \`stdin\`, \`stdout\`, and \`code\` properties.
+ * Rejects with an error if the subprocess emitted an "error" event. 
+ *
+ * @example exec("sed", ["-e", "s/in/out/"], "input");
+ * @param {String}   command          - Executed command
+ * @param {String[]} argList          - List of arguments/switches
+ * @param {String}  [inputData=null]  - Data piped to stdin
+ * @param {String}  [outputPath=""]   - File to write stdout to
+ * @param {String}  [encoding="utf8"] - Character encoding
+ * @return {Promise}
+ */
+async function exec(command, argList = [], inputData = null, outputPath = "", encoding = "utf8"){
+	const proc = require("child_process").spawn(command, argList, {
+		windowsHide: true,
+		stdio: outputPath
+			? ["pipe", fs.openSync(outputPath, "w"), "pipe"]
+			:  "pipe",
+	});
+	let stdout = "";
+	let stderr = "";
+	if(null !== inputData){
+		proc.stdin.write(inputData, encoding);
+		proc.stdin.end();
+	}
+	if(!outputPath){
+		proc.stdout.setEncoding(encoding);
+		proc.stdout.on("data", data => stdout += data);
+	}
+	proc.stderr.setEncoding(encoding);
+	proc.stderr.on("data", data => stderr += data);
+	return new Promise((resolve, reject) => {
+		proc.on("close", code => resolve({code, stdout, stderr}));
+		proc.on("error", error => reject(error));
+	});
+}

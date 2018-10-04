@@ -1,0 +1,36 @@
+# -*- mode: snippet -*-
+# key: which
+# name: which()
+# group: Utility functions
+# atom-selector: .source.js
+# --
+/**
+ * Locate a program file in the user's $PATH.
+ *
+ * Resolves with an empty string/array if nothing was found.
+ *
+ * @example which("curl") == "/usr/bin/curl"
+ * @example which("nada") == ""
+ * @param {String} name
+ * @param {Boolean} [all=false]
+ * @return {Promise}
+ */
+async function which(name, all = false){
+	if(!name) return all ? [] : "";
+	const cmdStr = "win32" === process.platform
+		? \`@for %g in (ECHO ${name.replace(/%/g, "%%")}) do\`
+			+ " @for %e in (%PATHEXT%) do"
+			+ " @for %i in (%g%e) do "
+			+ ' @if NOT "%~$PATH:i"=="" echo %~$PATH:i'
+		: all
+			? "IFS=:; for i in $PATH; do"
+				+ \` p="$i/"'${name.replace(/'/g, \`'"'"'\`)}';\`
+				+ ' if [ -x "$p" ] && [ -f "$p" ]; then printf "%s\\\\n" "$p"; fi;'
+				+ " done"
+			: \`command -v '${name.replace(/'/g, \`'"'"'\`)}' 2>/dev/null || true\`;
+	const result = await new Promise((resolve, reject) =>
+		require("child_process").exec(cmdStr, {windowsHide: true}, (error, output) => error
+			? reject(error)
+			: resolve(output.split(/\\r?\\n/).filter(Boolean))));
+	return all ? result : result[0] || "";
+}
