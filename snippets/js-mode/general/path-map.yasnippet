@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# key: pathmap
+# name: Memoising path-map
+# group: General
+# atom-selector: .source.js
+# --
+const ${1:paths} = new Proxy({
+	promises: new Map(),
+	resolved: new Map(),
+}, {
+	get(target, key){
+		if("symbol" === typeof key)
+			return Reflect.get(target, key);
+		let result = target.promises.get(key);
+		if(result) return result;
+		target.promises.set(key, result = which(key).then(path => {
+			target.resolved.set(key, path);
+			return path;
+		}));
+		return result;
+	},
+	
+	has(target, key){
+		return target.resolved.has(key);
+	},
+	
+	deleteProperty(target, key){
+		return target.delete(key);
+	},
+});
