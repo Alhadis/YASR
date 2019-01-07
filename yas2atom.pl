@@ -2,7 +2,7 @@
 use strict;
 use warnings;
 use autodie;
-use v5.14;
+use v5.24;
 use utf8;
 $| = 1;
 
@@ -134,7 +134,7 @@ while(<>){
 	}
 	
 	$snippets{$sel}->{defs}{$name} = \%snip;
-	push $snippets{$sel}->{groups}{$group}, $name;
+	push @{%{$snippets{$sel}->{groups}}{$group}}, $name;
 }
 
 
