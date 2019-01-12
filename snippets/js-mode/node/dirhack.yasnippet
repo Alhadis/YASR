@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: dirhack
+# name: "__dirname/__filename" hacks for ESM/.mjs files
+# group: Node.js
+# atom-selector: .source.js
+# --
+import path from "path";
+import {URL} from "url";
+const \$0 = new URL(import.meta.url);
+const __dirname  = \$0.pathname.replace(/\\/[^/]+\\.mjs$/i, "");
+const __filename = path.basename(\$0.pathname);
