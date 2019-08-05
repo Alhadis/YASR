@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# key: date
+# name: Current date
+# group: General
+# atom-selector: .source.perl
+# --
+${1:use POSIX;
+
+}# Return the current date formatted as "August 9, 2019".
+sub currentDate(){
+	my ($day, $month, $year) = (localtime())[3..5];
+	$year += 1900;
+	$month = POSIX::strftime("%B", 0, 0, 0, $day, $month, $year);
+	return "$month $day, $year";
+}$0
