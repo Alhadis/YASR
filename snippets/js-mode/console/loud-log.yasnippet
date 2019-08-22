@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: LOG
+# name: console.log, verbose
+# group: Console methods
+# atom-selector: .source.js, .source.ts, .source.tsx
+# --
+console.log(${0:require("util")}.inspect(${1:obj}, {showHidden: ${2:true}, depth: null, colors: true}));$3
