@@ -4,13 +4,14 @@
 # group: Node.js
 # atom-selector: .source.js, .source.ts, .source.tsx
 # --
-new Promise(resolve => {
+new Promise((resolve, reject) => {
 	let input = "";
-	process.stdin.setEncoding("UTF8");
+	process.stdin.setEncoding("utf8");
+	process.stdin.on("error", error => reject(error));
 	process.stdin.on("readable", () => {
 		const chunk = process.stdin.read();
 		null !== chunk ? input += chunk : resolve(input);
-	})
+	});
 }).then(data => {
 	$1
 });
