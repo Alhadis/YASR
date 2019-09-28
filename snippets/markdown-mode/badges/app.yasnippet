@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# key: app
+# name: Build status: AppVeyor
+# group: Badges
+# atom-selector: .text.md, .source.gfm
+# --
+[![Build status: AppVeyor][AppVeyor-badge]][AppVeyor-link]
+
+[AppVeyor-badge]: https://ci.appveyor.com/api/projects/status/github/${0:Alhadis}/${2:project}?svg=true&branch=master
+[AppVeyor-link]:  https://ci.appveyor.com/project/${0:Alhadis}/${2:project}

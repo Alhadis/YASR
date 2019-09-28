@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# key: badges
+# names: Project badge list
+# group: Badges
+# atom-selector: .text.md, .source.gfm
+# --
+[![Build status: TravisCI][TravisCI-badge]][TravisCI-link]
+[![Build status: AppVeyor][AppVeyor-badge]][AppVeyor-link]
+[![Coverage status][Coverage-badge]][Coverage-link]
+[![Latest release][Release-badge]][Release-link]
+[![Latest release][NPM-badge]][NPM-link]
+[![Latest release][APM-badge]][APM-link]
+
+[TravisCI-badge]: https://travis-ci.org/${0:Alhadis}/${1:project}.svg?branch=master
+[TravisCI-link]:  https://travis-ci.org/${0:Alhadis}/${1:project}
+[AppVeyor-badge]: https://ci.appveyor.com/api/projects/status/github/${0:Alhadis}/${1:project}?svg=true&branch=master
+[AppVeyor-link]:  https://ci.appveyor.com/project/${0:Alhadis}/${1:project}
+[Coverage-badge]: https://img.shields.io/coveralls/${0:Alhadis}/${1:project}.svg
+[Coverage-link]:  https://coveralls.io/github/${0:Alhadis}/${1:project}?branch=master
+[Release-badge]:  https://img.shields.io/github/v/release/${0:Alhadis}/${1:project}?color=brightGreen&sort=semver
+[Release-link]:   https://github.com/${0:Alhadis}/${1:project}/releases/latest
+[NPM-badge]:      https://img.shields.io/npm/v/${2:${1:package-name}}.svg?colorB=brightgreen
+[NPM-link]:       https://www.npmjs.com/package/${2:${1:package-name}}
+[APM-badge]:      https://img.shields.io/apm/v/${2:${1:package-name}}.svg?colorB=brightgreen
+[APM-link]:       https://atom.io/packages/${2:${1:package-name}}
