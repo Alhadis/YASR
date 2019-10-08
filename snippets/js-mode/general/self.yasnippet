@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# key: self
+# name: Global object reference
+# group: General
+# atom-selector: .source.js, .source.ts, .source.tsx
+# --
+const self = ("object" === typeof globalThis
+	? globalThis
+	: "object" === typeof global ? global : this
+) || Function("return this")();
