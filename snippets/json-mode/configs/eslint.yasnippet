@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# key: eslint
+# name: ESLint
+# group: Config examples
+# atom-selector: .source.json
+# --
+"eslintIgnore": ["index.min.js", "test.js"],
+"eslintConfig": {
+	"extends": "@alhadis",
+	"parser": "babel-eslint",
+	"rules": {
+		"indent": 0
+	},
+	"overrides": [{
+		"files": ["specific/files/*"],
+		"rules": {"brace-style": 0}
+	},{
+		"files": ["test/*"],
+		"globals": {"expect": true}
+	}]
+}

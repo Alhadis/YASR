@@ -1,0 +1,21 @@
+# -*- mode: snippet -*-
+# key: nyc
+# name: Istanbul.js
+# group: Config examples
+# atom-selector: .source.json
+# --
+"nyc": {
+	"all": true,
+	"clean": false,
+	"reporter": "text",
+	"include": [
+		"index.js",
+		"register.js"
+	],
+	"watermarks": {
+		"lines":      [80, 95],
+		"functions":  [80, 95],
+		"branches":   [80, 95],
+		"statements": [80, 95]
+	}
+}
