@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# key: dirname
+# name: Dirname, longer
+# group: General
+# atom-selector: .source.perl
+# --
+use File::Spec::Functions qw< rel2abs >;
+my ${1:\$dir} = Cwd::abs_path rel2abs("../", "\$0");
