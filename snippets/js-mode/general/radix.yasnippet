@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# key: radix
+# name: Radix helpers
+# group: General
+# atom-selector: .source.js, .source.ts, .source.tsx
+# --
+// Make radices easier to work with
+for(const type of [Number, BigInt])
+	Object.defineProperties(type.prototype, {
+		hex:  {configurable: true, get(){ return this.toString(16).toUpperCase().padStart(2, "0"); }},
+		oct:  {configurable: true, get(){ return this.toString(8).padStart(3, "0"); }},
+		bits: {configurable: true, get(){ return this.toString(2).padStart(8, "0"); }},
+	});
