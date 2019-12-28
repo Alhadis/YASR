@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: rotr
+# name: Circular shift, right
+# group: General
+# atom-selector: .source.js, .source.ts, .source.tsx
+# --
+(${1:value} >>> ${2:offset} | ${1:value} << 32 - ${2:offset}) >>> 0$0
