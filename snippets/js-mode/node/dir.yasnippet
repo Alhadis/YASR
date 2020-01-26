@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: dir
+# name: "__dirname/__filename" equivalents for ESM
+# group: Node.js
+# atom-selector: .source.js
+# --
+import {dirname} from "path";
+import {fileURLToPath} from "url";
+
+const file = fileURLToPath(import.meta.url);
+const dir = dirname(file);
