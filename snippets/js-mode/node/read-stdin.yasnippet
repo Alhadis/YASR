@@ -14,4 +14,7 @@ new Promise((resolve, reject) => {
 	});
 }).then(data => {
 	$1
+}).catch(err => {
+	process.error(err);
+	process.exit(1);
 });
