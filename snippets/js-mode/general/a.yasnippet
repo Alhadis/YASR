@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# key: a
+# name: Immediately-invoked async arrow function
+# group: General
+# atom-selector: .source.js, .source.ts, .source.tsx
+# atom-selector-label: JavaScript
+# --
+(async () => {
+	$1
+})().catch(error => {
+	console.error(error);
+	process.exit(1);
+});
