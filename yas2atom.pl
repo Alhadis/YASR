@@ -17,6 +17,16 @@ use Getopt::Long;
 END { close STDOUT }
 
 
+# Strip or escape backslashes
+sub fixSlashes {
+	my ($input) = shift;
+	$input =~ s/\\(?=`)//g;                  # Unescape backticks
+	$input =~ s/\\\$(?!{?[0-9]|>)/\$/g;      # Unescape dollar signs
+	$input =~ s/`\(\)`\Z//;                  # Prune trailing newline hack
+	$input =~ s/\\/\\\\/g;                   # Double-escape every backslash
+	return $input;
+}
+
 # Quote a string using the most appropriate quote-type
 sub quote {
 	my ($input) = shift;
@@ -79,18 +89,15 @@ while(<>){
 	next if defined $attr{"type"} and "command" eq $attr{"type"};
 	
 	# Format body string
-	$body =~ s/\\(?=`)//g;                  # Unescape backticks
-	$body =~ s/\\\$(?!{?[0-9]|>)/\$/g;      # Unescape dollar signs
-	$body =~ s/`\(\)`\Z//;                  # Prune trailing newline hack
-	$body =~ s/\\/\\\\/g;                   # Double-escape every backslash
+	$body = fixSlashes($body);
 	
 	# Convert trailing newlines to `\n`
 	$body =~ s/\n(\n*)\Z/"\n" . ("\\n" x length $1)/e;
 	
 	# Unravel header fields
-	my $sel   = $attr{"atom-selector"};
-	my $key   = $attr{"key"}  || ($ARGV =~ s/\.yasnippet$//);
-	my $name  = $attr{"name"} || $key;
+	my $sel   = fixSlashes $attr{"atom-selector"};
+	my $key   = fixSlashes $attr{"key"}  || ($ARGV =~ s/\.yasnippet$//);
+	my $name  = fixSlashes $attr{"name"} || $key;
 	my %snip  = (prefix => $key, body => $body);
 	
 	# Optional snippet keys
