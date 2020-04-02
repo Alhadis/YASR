@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: warn
+# name: Write to stderr
+# atom-selector: .source.shell
+# --
+printf >&2 '${0:%s\\n}' ${1:Message}
+$2
