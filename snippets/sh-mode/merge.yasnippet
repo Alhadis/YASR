@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
-# key: warn
-# name: Write to stderr
+# key: merge
+# name: Merge stdout and stderr
 # atom-selector: .source.shell
 # --
-printf >&2 '$1'
+2>&1
