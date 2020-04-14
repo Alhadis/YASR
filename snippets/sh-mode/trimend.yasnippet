@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# key: trimend
+# name: Strip trailing whitespace
+# atom-selector: .source.shell
+# --
+sed -e :a -e '/^\\n*\$/{\$d;N;};/\\n\$/ba'
