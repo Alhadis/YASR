@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: .esc
+# name: Escape RegExp metacharacters
+# group: General
+# atom-selector: .source.js, .source.ts, .source.tsx
+# --
+.replace(/([/\\\\^\$*+?{}[\\]().|])/g, "\\\\\$1")
