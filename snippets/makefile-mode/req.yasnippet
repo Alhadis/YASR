@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: req
+# name: require() function
+# atom-selector: .source.makefile
+# --
+# Declare a list of programs as recipe dependencies
+require = \\
+	require(){ \\
+		while [ \$\$\\# -gt 0 ]; do command 2>&1 >/dev/null -v "\$\$1" || { \\
+			printf >&2 'Required command \`%s\` not found\\n' "\$\$1"; \\
+			return 1; \\
+		}; shift; done; \\
+	}; require
+$0
