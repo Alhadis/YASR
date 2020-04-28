@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# key: iso
+# name: Isomorphic JavaScript hack
+# group: General
+# atom-selector: .source.js, .source.ts, .source.tsx
+# --
+#!/usr/bin/env node
+// <!DOCTYPE html><html><body><script type="module">
+import {isBrowser$2} from "${1:./EAL}";
+
+if(isBrowser()){
+	$0
+}
+else{
+	
+}
+
+// </script></body></html>
