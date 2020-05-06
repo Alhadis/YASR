@@ -5,5 +5,5 @@
 # contributor: https://mywiki.wooledge.org/BashFAQ/001
 # --
 while IFS=${1:,} read -r ${2:first second third rest}; do
-	$4
+	$0
 done < "${3:\$filepath}"
