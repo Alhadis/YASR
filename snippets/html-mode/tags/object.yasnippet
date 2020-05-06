@@ -2,7 +2,8 @@
 # key: object
 # name: Object
 # group: Tags
+# atom-selector: .text.html.basic
 # --
-<object${1: type="$2"}${3: data="${4:https://}"}>
-	$5
+<object type="$1" data="${2:https://}">
+	$0
 </object>
