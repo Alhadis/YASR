@@ -1,0 +1,22 @@
+# -*- mode: snippet -*-
+# key: which
+# name: which(1) implementation
+# group: General
+# atom-selector: .source.perl
+# --
+# Locate commands in the user's \$PATH
+sub which {
+	my @paths = split(/:/, \$ENV{"PATH"});
+	return grep {!undef} map {
+		my \$cmd;
+		for my \$path (@paths){
+			\$path =~ s|/\$||;
+			if(-x "\$path/\$_"){
+				\$cmd = "\$path/\$_";
+				last;
+			}
+		}
+		\$cmd;
+	} @_;
+}
+$0
