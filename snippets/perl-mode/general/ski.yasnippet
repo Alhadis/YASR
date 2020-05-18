@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: ski
+# name: Sort keys case-insensitively
+# group: General
+# atom-selector: .source.perl
+# --
+sort {lc \$a cmp lc \$b || \$a cmp \$b} keys $0
