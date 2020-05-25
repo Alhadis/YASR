@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# key: iterator
+# name: [Symbol.iterator]() function
+# group: General
+# atom-selector: .source.js, .source.ts, .source.tsx
+# --
+[Symbol.iterator](){
+	return {
+		next(){
+			let value = ${1:getValueSomehow()};
+			return value
+				? {value}
+				: {done: true};
+		},
+	};
+}$0
