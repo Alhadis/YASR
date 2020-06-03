@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# key: undef
+# name: Assert non-existence of variable
+# atom-selector: .source.shell
+# --
+[ -z \${${1:VARIABLE_NAME}+1} ]$0
