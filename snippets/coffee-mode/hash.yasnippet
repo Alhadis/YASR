@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: hash
+# name: Hashbang pattern
+# atom-selector: .source.coffee
+# atom-left-label: cson
+# --
+# Hashbang
+^\\\\#!.*(?:\\\\s|\\\\/|(?<=!)\\\\b)
+	$1
+(?:\$|\\\\s)
+$0
