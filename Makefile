@@ -6,7 +6,7 @@ all: cson yas2atom.1
 # Compile `snippets.cson` file
 cson:
 	path=$${CSON_FILE=snippets.cson}; \
-	$(yas2atom) `find ./snippets -type f -name '*.yasnippet'` > $$path; \
+	find ./snippets -type f -name '*.yasnippet' -print0 | xargs -0 $(yas2atom) > $$path; \
 	command -v cson2json 2>&1 >/dev/null && cson2json $$path >/dev/null
 
 # Unused; added only for personal amusement
