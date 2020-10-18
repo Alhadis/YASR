@@ -1,7 +1,10 @@
 # -*- mode: snippet -*-
-# key: dirname
+# key: DIR
 # name: `__dirname` replacement for ESM
 # group: General
 # atom-selector: .source.js, .source.ts, .source.tsx
 # --
-import.meta.url.replace(/^file:\\/\\/|[/\\\\][^/\\\\]+$/gi, "");
+const ${1:DIR} = decodeURIComponent(import.meta.url
+	.replace(/\/[^/]*\$/, "")
+	.replace(/^file:\/\//, ""));
+$0
