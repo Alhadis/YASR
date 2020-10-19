@@ -5,6 +5,6 @@
 # atom-selector: .source.js, .source.ts, .source.tsx
 # --
 const ${1:DIR} = decodeURIComponent(import.meta.url
-	.replace(/\/[^/]*\$/, "")
-	.replace(/^file:\/\//, ""));
+	.replace(/\\/[^/]*\$/, "")
+	.replace(/^file:\\/\\//, ""));
 $0
