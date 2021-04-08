@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: pipefail
+# name: Enable `pipefail` option
+# atom-selector: .source.shell
+# --
+# shellcheck disable=SC2039
+set -o pipefail >/dev/null 2>&1 || :
