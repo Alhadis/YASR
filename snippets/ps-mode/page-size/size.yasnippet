@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# key: size
+# name: Retrieve the dimensions of the current page
+# group: Page size
+# --
+currentpagedevice /PageSize get dup
+0 get /PageWidth  exch def
+1 get /PageHeight exch def
+$0

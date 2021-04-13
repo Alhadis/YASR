@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# key: 85
+# name: Print Ascii85-encoded data
+# group: General
+# --
+(%stdout) (w) file
+	dup (<~) print
+	dup /ASCII85Encode filter
+	dup (${1:Foo\\\\n}) writestring
+	closefile
+	() = flush
+closefile
+$0
