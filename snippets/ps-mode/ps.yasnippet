@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: ps
+# name: PostScript program boilerplate
+# atom-selector: .source.postscript
+# atom-selector-label: PostScript
+# --
+%!PS
+
+% Load libraries
+(${2:../Labs/Stupid-Post-Tricks}/inspect.ps) run
+(${2:../Labs/Stupid-Post-Tricks}/lists.ps)   run
+/? { istack } bind def
+
+$1
