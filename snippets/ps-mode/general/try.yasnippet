@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# key: try
+# name: Try/catch block
+# group: General
+# --
+{
+	${1:try}
+} stopped {
+	\\$error /newerror false put
+	${2:catch}
+} if
+$0

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# key: decode
+# name: Decode string
+# group: General
+# --
+(${1:STRING TO DECODE})
+dup length exch 0 () /SubFileDecode filter
+${2:/DecodingFilter} filter exch
+string readstring pop
+$0
