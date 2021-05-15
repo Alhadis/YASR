@@ -12,5 +12,5 @@
  * @return {String}
  */
 function escapeRegExp(input){
-	return input.replace(/([/\\\\^\$*+?{}[\\]().|])/g, "\\\\\$1");
+	return input.replace(/[/\\\\^\$*+?{}[\\]().|]/g, "\\\\\$&");
 }
