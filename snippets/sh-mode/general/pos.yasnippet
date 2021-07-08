@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: pos
+# name: Get TTY cursor position
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+exec </dev/tty               # Reopen STDIN
+stty=\`stty -g\`               # Save current terminal settings
+stty raw -echo min 0 time 10 # Prep TTY for capture
+printf '\\033[6n' >/dev/tty   # Send DSR code requesting cursor position
+IFS='[;R' read -r _ row col  # Read the response
+stty "\$stty" && unset stty   # Restore terminal settings
+
+${1:printf 'Row: %s\\n' "\$row"
+printf 'Col: %s\\n' "\$col"}
