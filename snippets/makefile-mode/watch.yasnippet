@@ -4,5 +4,11 @@
 # atom-selector: .source.makefile
 # atom-selector-label: Makefile
 # --
-watch:;   @watchman -- trigger . _ '${1:fixtures/*}' -- make all >/dev/null
-unwatch:; @watchman -- watch-del . >/dev/null
+watch:
+	watchman watch ${1:.}
+	watchman -- trigger ${1:.} ${2:remake} '${2:*.src}' -- make all
+
+unwatch:
+	watchman -- watch-del ${1:.}
+
+.PHONY: watch unwatch
