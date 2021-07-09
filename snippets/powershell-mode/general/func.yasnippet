@@ -1,0 +1,42 @@
+# -*- mode: snippet -*-
+# key: func
+# name: Function cmdlet
+# group: General
+# atom-selector: .source.powershell
+# --
+<#
+.SYNOPSIS
+	Short description
+
+.DESCRIPTION
+	Long description
+
+.OUTPUTS
+	The value returned by this cmdlet
+
+.EXAMPLE
+	Example of how to use this cmdlet
+
+.LINK
+	To other relevant cmdlets or help
+#>
+function ${1:Verb}-${2:Noun}{
+	[CmdletBinding()]
+	[OutputType([Nullable])]
+	Param(
+		# ${3:Param1} help description
+		[Parameter(Mandatory, ValueFromPipelineByPropertyName, Position=0)]
+		${3:Param1},
+
+		# ${4:Param2} help description
+		[int]
+		${4:Param2}
+	)
+	Begin{
+		$0
+	}
+	Process{
+	}
+	End{
+	}
+}

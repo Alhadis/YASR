@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# key: switch
+# name: Switch
+# group: General
+# atom-selector: .source.powershell
+# --
+switch(${1:\$value}){
+	${2:"value-1"} {}
+	{\$_ -in "A","B","C"} {}
+	${2:"value-3"} {}
+	Default {}
+}

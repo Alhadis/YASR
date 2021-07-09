@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: -f
+# name: Test for regular file
+# group: Unix parity
+# atom-selector: .source.powershell
+# --
+Test-Path -Path "$1" -PathType Leaf$0

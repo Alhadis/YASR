@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: LOG
+# name: Write-Host (Additional options)
+# group: General
+# atom-selector: .source.powershell
+# --
+Write-Host $1 -Separator "${2:,}" ${3:-ForegroundColor ${4:DarkGreen}} ${5:-BackgroundColor ${6:White}}$0
