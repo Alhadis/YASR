@@ -1,7 +1,8 @@
 # -*- mode: snippet -*-
 # key: pwd
-# name: Get-Location
+# name: Current filesystem location
 # group: Unix parity
 # atom-selector: .source.powershell
+# atom-description-more-url: https://ss64.com/ps/get-location.html
 # --
-Get-Location
+\$ExecutionContext.SessionState.Path.CurrentFileSystemLocation.Path
