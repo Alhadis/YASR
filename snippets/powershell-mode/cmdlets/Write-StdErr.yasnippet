@@ -1,0 +1,42 @@
+# -*- mode: snippet -*-
+# key: stderr
+# name: Write-StdErr
+# group: Cmdlets
+# contributor: mklement0
+# atom-selector: .source.powershell
+# atom-description: Write to the host's STDERR stream
+# atom-description-more-url: https://stackoverflow.com/a/15669365
+# --
+${1:<#
+.SYNOPSIS
+	Writes text to STDERR when running in a regular console window,
+	to the host''s error stream otherwise.
+
+.DESCRIPTION
+	Writing to true STDERR allows you to write a well-behaved CLI as
+	a PS script that can be invoked from a batch file, for instance.
+
+	Note that by default, PowerShell sends *all* its streams to STDOUT
+	when invoked from \`cmd.exe\`.
+
+	This function acts similarly to Write-Host in that it simply calls
+	.ToString() on its input; to get the default output format, invoke
+	it via a pipeline and precede with Out-String.
+.LINK
+	Source: https://stackoverflow.com/a/15669365
+#>
+}function Write-StdErr(){
+	param ([PSObject] \$inputObject)
+	\$outFunc =
+		if(\$host.name -eq "ConsoleHost"){ [Console]::Error.writeLine }
+		else{ \$host.ui.writeErrorLine }
+	if(\$inputObject){
+		[void] \$outFunc.invoke(\$inputObject.toString())
+	}
+	else{
+		[string[]] \$lines = @()
+		\$input | ForEach-Object {\$lines += \$_.toString()}
+		[void] \$outFunc.invoke(\$lines -join "\`r\`n")
+	}
+}
+$0
