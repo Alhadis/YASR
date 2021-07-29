@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # key: swap
 # name: Swap stderr and stdout
+# group: File descriptors
 # atom-selector: .source.shell, .meta.scope.recipe.makefile
 # --
 ${1:command} 3>&1 1>${2:stdout.dest} 2>&3-

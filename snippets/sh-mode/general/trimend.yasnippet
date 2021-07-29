@@ -1,6 +1,7 @@
 # -*- mode: snippet -*-
 # key: trimend
 # name: Strip trailing whitespace
+# group: General
 # atom-selector: .source.shell, .meta.scope.recipe.makefile
 # --
 sed -e :a -e '/^\\n*\$/{\$d;N;};/\\n\$/ba'
