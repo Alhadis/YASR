@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: last
+# name: Expand last element of $argv
+# group: General
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+eval 'printf %s "\$'\$#'"'
