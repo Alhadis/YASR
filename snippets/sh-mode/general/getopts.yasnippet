@@ -28,6 +28,14 @@ while [ -n "\$1" ]; do case \$1 in
 		$0
 		break ;;
 
+	# Parametric option
+	-${4:k}*|--${5:key}|--${5:key}=*)
+		case \$1 in
+			-${4:k}|--${5:key}) ${5:${6:key}}=\$2; shift ;; # -${4:k} [value], --${5:key} [value]
+			-${4:k}*)      ${5:${6:key}}=\${1#??}   ;; # -${4:k}[value]
+			--${5:key}=*)  ${5:${6:key}}=\${1#*=}   ;; # --${5:key}=[value]
+		esac ;;
+
 	# Double-dash: Terminate option parsing
 	--)
 		shift
