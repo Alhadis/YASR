@@ -4,13 +4,8 @@
 # group: Node.js
 # atom-selector: .source.js
 # --
-// Force logged output to use indentation that's actually readable
-import {inspect} from "util";
-Object.assign(inspect.defaultOptions, {
-	colors: true,
-	compact: false,
-	depth: Infinity,
-});
+${1:import \{inspect\} from "util";}
+Object.assign(inspect.defaultOptions, {colors: true, compact: false, depth: Infinity});
 for(const name of "log debug dir dirxml info error warning".split(" ")){
 	const fn = console[name];
 	if("function" !== typeof fn) continue;
