@@ -1,0 +1,29 @@
+# -*- mode: snippet -*-
+# key: logfix
+# name: Unfuck Node's `console.*` methods
+# group: Node.js
+# atom-selector: .source.js
+# --
+// Force logged output to use indentation that's actually readable
+import {inspect} from "util";
+Object.assign(inspect.defaultOptions, {
+	colors: true,
+	compact: false,
+	depth: Infinity,
+});
+for(const name of "log debug dir dirxml info error warning".split(" ")){
+	const fn = console[name];
+	if("function" !== typeof fn) continue;
+	console[name] = function(...args){
+		return fn.apply(this, args.map(arg => {
+			if("string" === typeof arg)
+				return arg;
+			return inspect(arg).split("\\n").map(line => {
+				let offset = 0;
+				while("  " == line.slice(offset, offset + 2)) offset += 2;
+				return "\\t".repeat(offset / 2) + line.slice(offset);
+			}).join("\\n");
+		}));
+	};
+}
+$0
