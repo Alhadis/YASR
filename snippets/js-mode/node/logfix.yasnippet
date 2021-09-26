@@ -15,7 +15,7 @@ for(const name of "log debug dir dirxml info error warning".split(" ")){
 				return arg;
 			return inspect(arg).split("\\n").map(line => {
 				let offset = 0;
-				while("  " == line.slice(offset, offset + 2)) offset += 2;
+				while("  " === line.slice(offset, offset + 2)) offset += 2;
 				return "\\t".repeat(offset / 2) + line.slice(offset);
 			}).join("\\n");
 		}));
