@@ -4,4 +4,4 @@
 # group: General
 # atom-selector: .source.shell, .meta.scope.recipe.makefile
 # --
-[ -z "\${${1:VARIABLE_NAME}+1}" ]$0
+[ "\${${1:VARIABLE_NAME}-1}" ]$0
