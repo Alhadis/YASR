@@ -27,6 +27,13 @@ sub fixSlashes {
 	return $input;
 }
 
+# Replace `${1|choice1,…,choiceN|}` with `${1:choice1|…|choiceN}`
+sub squashChoices {
+	my ($input) = shift;
+	$input =~ s{\$\{(\d+)\|((?:[^|{}]|\\[|{}])*+)\|\}}{"\${$1:".($2=~y/,/|/r).'}';}eg;
+	return $input;
+}
+
 # Quote a string using the most appropriate quote-type
 sub quote {
 	my ($input) = shift;
@@ -90,6 +97,9 @@ while(<>){
 	
 	# Format body string
 	$body = fixSlashes($body);
+	
+	# Atom doesn't support multiple-choice replacements
+	$body = squashChoices($body);
 	
 	# Convert trailing newlines to `\n`
 	$body =~ s/\n(\n*)\Z/"\n" . ("\\n" x length $1)/e;
