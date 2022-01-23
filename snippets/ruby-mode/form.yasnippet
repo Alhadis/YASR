@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# key: form
+# name: Homebrew formula
+# atom-selector: .source.ruby, .dyn.caret.begin.document
+# atom-description-more-url: https://docs.brew.sh/Formula-Cookbook
+# --
+class ${1:Name} < Formula
+	desc "${2:Description}"
+	url "${3:https://github.com/user/repo.git}"
+	sha256 "${4:checksum}"
+	license "${5:spdx-license-id}"
+	version "${6:version}"
+	
+	def install
+		$0
+	end
+end
