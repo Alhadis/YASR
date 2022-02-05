@@ -1,0 +1,35 @@
+# -*- mode: snippet -*-
+# key: cmp
+# name: Side-by-side code-block comparison
+# group: General
+# atom-selector: .text.md, .source.gfm
+# --
+<table width="700"><thead><tr><th
+>${1:Left Header}</th><th
+>${2:Right Header}</th>
+</tr></thead><tbody><tr><td valign="top" width="350">
+
+~~~${3:js}
+${4:Left cell}
+~~~
+
+</td><td valign="top" width="350">
+
+~~~${3:js}
+${5:Right cell}
+~~~
+
+${6:</td></tr></tbody><thead><tr><th colspan="2">${7:Output}</th></tr></thead><tbody><tr><td valign="top" width="350">
+
+~~~${8:text}
+${9:Left cell}
+~~~
+
+</td><td valign="top" width="350">
+
+~~~${8:text}
+${10:Right cell}
+~~~
+}</td></tr></tbody></table>
+
+$0
