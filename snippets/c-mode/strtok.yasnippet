@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: tok
+# name: strtok(3) example
+# atom-selector: .source.c, .source.cpp
+# atom-selector-label: C/C++
+# --
+char *${1:input} = *++argv;
+printf("Input: %s\\n", ${1:input});
+
+char *${3:token};
+while((${3:token} = strtok(${1:input}, "${2:delimiters}"))){
+	${1:input} = NULL;
+	${4:printf("Token: %s\\n", ${3:token})};
+}
