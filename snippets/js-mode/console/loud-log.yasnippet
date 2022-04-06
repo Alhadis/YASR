@@ -4,4 +4,8 @@
 # group: Console methods
 # atom-selector: .source.js, .source.ts, .source.tsx
 # --
-console.log(inspect(${1:obj}, {showHidden: false, depth: null, colors: true}));$0
+console.log(inspect(${1:obj}, {
+	showHidden: ${2:false},
+	depth: null,
+	colors: true,
+}).replace(/^(?:  )+/gm, s => "\\t".repeat(s.length / 2)));$0
