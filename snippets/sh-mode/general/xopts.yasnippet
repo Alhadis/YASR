@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: xopts
+# name: Expand option clusters
+# group: General
+# atom-selector: .source.shell
+# --
+case \$1 in
+	--[^=]*=*) eval "shift; set -- '\${1%%=*}'     '\${1#*=}' \\"\\\$@\\"" ;;
+	-[!-]?*)   eval "shift; set -- '\${1%\${1#-?}}' '\${1#-?}' \\"\\\$@\\"" ;;
+esac
+$0
