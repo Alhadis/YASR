@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# key: def
+# name: Permalinkable definition
+# group: General
+# atom-selector: .text.restructuredtext, .text.rst
+# atom-selector-label: reStructuredText
+# --
+.. |${1:name}| replace:: \`\`${1:name}\`\`
+.. _${1:name}:
+$0
