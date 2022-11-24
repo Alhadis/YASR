@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: memq
+# name: memq()
+# group: Utility functions
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+# Return true if \$1 appears more than once in argument list
+memq(){
+	while [ \$# -gt 1 ]; do
+		[ "\$1" = "\$2" ] && return
+		eval "shift 2 && set -- \\"\$1\\" \\"\\\$@\\""
+	done
+	return 1
+}
