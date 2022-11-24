@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# key: ksh
+# name: /bin/ksh hashbang
+# group: General
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+#!/bin/ksh
+# shellcheck shell=ksh
+set +o sh
+set -e
+
+$0
