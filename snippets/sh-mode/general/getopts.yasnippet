@@ -23,18 +23,28 @@ while [ -n "\$1" ]; do case \$1 in
 		printf '%s\\n' "\$version"
 		exit ;;
 
+	# Unbundle short options
+	-[${3:niladic-short-opts}]?*)
+		tail="\${1#??}"
+		head=\${1%"$tail"}
+		shift
+		set -- "\$head" "-\$tail" "\$@"
+		continue ;;
+
+	# Expand parametric values
+	-[${4:monadic-short-opts}]?*|--[!=]*=*)
+		case \$1 in
+			--*) tail=\${1#*=}; head=\${1%%=*} ;;
+			*)   tail=\${1#??}; head=\${1%"$tail"} ;;
+		esac
+		shift
+		set -- "\$head" "\$tail" "\$@"
+		continue ;;
+
 	# Add new switch checks here
-	${3:--option-name})
+	${5:--option-name})
 		$0
 		break ;;
-
-	# Parametric option
-	-${4:k}*|--${5:key}|--${5:key}=*)
-		case \$1 in
-			-${4:k}|--${5:key}) ${5:${6:key}}=\$2; shift ;; # -${4:k} [value], --${5:key} [value]
-			-${4:k}*)      ${5:${6:key}}=\${1#??}   ;; # -${4:k}[value]
-			--${5:key}=*)  ${5:${6:key}}=\${1#*=}   ;; # --${5:key}=[value]
-		esac ;;
 
 	# Double-dash: Terminate option parsing
 	--)
