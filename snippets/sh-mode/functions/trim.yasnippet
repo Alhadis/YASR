@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# key: trim
+# name: Whitespace-trimming using builtin(1) commands only
+# group: Utility functions
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+# Strip leading whitespace from \$1
+trim_start(){
+	while :; do case \$1 in
+		\\ *|'	'*|'
+'*) set -- "\${1#?}";;
+	*) break ;;
+	esac; done
+	printf %s "\$1"
+}
+
+# Strip trailing whitespace from \$2
+trim_end(){
+	while :; do case \$1 in
+		*\\ |*'	'|*'
+') set -- "\${1%?}" ;;
+		*) break ;;
+	esac; done
+	printf %s "\$1"
+}
