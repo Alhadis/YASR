@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# key: gmake
+# name: Force use of GNU Make in BSDmakefile
+# atom-selector: .source.makefile
+# --
+# -*- makefile-bsdmake -*- vim: ft=make
+
+make != \\
+	unset exe; \\
+	for cmd in gnumake gmake gnu-make; do \\
+		exe=\`command -v "\$\$cmd" 2>&1 || :\`; \\
+		[ ! "\$\$exe" ] || break; \\
+	done; \\
+	[ "\$\$exe" ] && [ -x "\$\$exe" ] || \\
+		exe='echo >&2 "GNU Make is required to build this project." && exit 2'\\ \\#; \\
+	printf %s "\$\$exe"
+
+.DEFAULT:
+	@ \${make} \$@
