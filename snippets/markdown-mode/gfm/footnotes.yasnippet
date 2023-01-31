@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: footnotes
+# name: Footnotes section
+# group: GitHub-flavoured markdown
+# atom-selector: .text.md, .source.gfm
+# --
+<section class="footnotes" data-footnotes>
+	<ol>
+		<li id="fn-${1:1}">${2:Footnote content.} <a href="#fnref-${1:1}" class="footnote-backref" data-footnote-backref>↩</a></li>$0
+	</ol>
+</section>
