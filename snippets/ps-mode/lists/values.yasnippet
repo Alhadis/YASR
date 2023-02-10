@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# key: values
+# name: Extract dictionary values
+# group: Lists
+# --
+begin
+currentdict {exch pop} forall
+currentdict length array astore
+end
+$0
