@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# key: bool
+# name: Boolean coercion of string parameter
+# group: Parser functions
+# atom-selector: .text.html.mediawiki
+# atom-description-more-url: https://www.mediawiki.org/wiki/Help:Extension:ParserFunctions
+# --
+{{#switch:<!--
+	-->{{lc:{{{${1:name}|}}}}}<!--
+	-->|y|yes|t|true = 1<!--
+	-->|#default={{isnumeric|{{{${1:name}|}}}}}<!--
+-->}}$0
