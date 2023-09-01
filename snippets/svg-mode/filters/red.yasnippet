@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# key: red
+# name: Extract red channel
+# group: Filters
+# atom-selector: .text.xml.svg
+# --
+<feColorMatrix in="SourceGraphic" type="matrix" values="
+	1 0 0 0 0
+	1 0 0 0 0
+	1 0 0 0 0
+	0 0 0 1 0
+" result="${1:red-channel}"/>$0

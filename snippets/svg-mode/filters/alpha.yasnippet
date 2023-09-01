@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# key: alpha
+# name: Extract alpha channel
+# group: Filters
+# atom-selector: .text.xml.svg
+# --
+<feColorMatrix in="SourceGraphic" type="matrix" values="
+	0 0 1 0 0
+	0 0 1 0 0
+	0 0 1 0 0
+	0 0 0 1 0
+" result="${1:alpha-channel}"/>$0

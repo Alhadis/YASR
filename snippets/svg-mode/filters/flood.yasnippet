@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: flood
+# name: Flood fill
+# group: Filters
+# atom-selector: .text.xml.svg
+# atom-description: Replicates Photoshop's “Colour Overlay” layer effect
+# --
+<filter id="${1:flood-fill}">
+	<feFlood flood-color="${2:#000}" flood-opacity="${3:1}" result="flood"/>$0
+	<feComposite in="flood" in2="SourceGraphic" operator="in"/>
+</filter>
