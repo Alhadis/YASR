@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# key: lerp
+# name: Linear interpolation function
+# contributor: https://en.wikipedia.org/wiki/Linear_interpolation#Programming_language_support
+# atom-selector: .source.c, .source.cpp
+# atom-selector-label: C/C++
+# --
+float lerp(float v0, float v1, float t){
+	return (1 - t) * v0 + t * v1;
+}
