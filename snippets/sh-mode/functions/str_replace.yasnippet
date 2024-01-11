@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: str_replace
+# name: String replacement function
+# group: Utility functions
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+# Replace all occurrences of \$2 with \$3 in the string "\$1"
+str_replace(){
+	while [ ! "\${1#*"\$2"}" = "\$1" ]; do
+		set -- "\$1" "\$2" "\$3" "\${1%%"\$2"*}" "\${1#*"\$2"}"
+		set -- "\${4}\$3\${5}" "\$2" "\$3"
+	done
+	printf %s "\$1"
+}
