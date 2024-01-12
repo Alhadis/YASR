@@ -4,7 +4,7 @@
 # atom-selector: .source.makefile
 # --
 # Replace all occurrences of \$2 with \$3 in the string "\$1"
-str_replace = \$(str_replace__fn) str_replace
+str_replace = \$(str_replace__fn); str_replace
 str_replace__fn = \\
 	str_replace(){ \\
 		while [ ! "\$\${1\\#*"\$\$2"}" = "\$\$1" ]; do \\
@@ -12,5 +12,5 @@ str_replace__fn = \\
 			set -- "\$\${4}\$\$3\$\${5}" "\$\$2" "\$\$3"; \\
 		done; \\
 		printf %s "\$\$1"; \\
-	};
+	}
 $0

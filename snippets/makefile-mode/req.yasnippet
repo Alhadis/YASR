@@ -4,11 +4,12 @@
 # atom-selector: .source.makefile
 # --
 # Declare a list of programs as recipe dependencies
-require = \\
+require = \$(require__fn); require
+require__fn = \\
 	require(){ \\
 		while [ \$\$\\# -gt 0 ]; do command >/dev/null 2>&1 -v "\$\$1" || { \\
 			printf >&2 'Required command \`%s\` not found\\n' "\$\$1"; \\
 			return 1; \\
 		}; shift; done; \\
-	}; require
+	}
 $0
