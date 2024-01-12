@@ -1,0 +1,35 @@
+# -*- mode: snippet -*-
+# key: trim
+# name: Whitespace-trimming functions
+# atom-selector: .source.makefile
+# --
+# Strip leading and trailing whitespace from \$1
+trim = \$(trim__fn); trim
+trim__fn = \\
+	trim(){ \\
+		set -- "\`trim_start "\$\$1"\`"; \\
+		trim_end "\$\$1"; \\
+	}
+
+# Strip leading whitespace from \$1
+trim_start = \$(trim_start__fn); trim_start
+trim_start__fn = \\
+	trim_start(){ \\
+		while :; do case \$\$1 in \\
+			[[:space:]]*) set -- "\$\${1\\#?}";; \\
+			*) break ;; \\
+		esac; done; \\
+		printf %s "\$\$1"; \\
+	}
+
+# Strip trailing whitespace from \$1
+trim_end = \$(trim_end__fn); trim_end
+trim_end__fn = \\
+	trim_end(){ \\
+		while :; do case \$\$1 in \\
+			*[[:space:]]) set -- "\$\${1%?}" ;; \\
+			*) break ;; \\
+		esac; done; \\
+		printf %s "\$\$1"; \\
+	}
+$0
