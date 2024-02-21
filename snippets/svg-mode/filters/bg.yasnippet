@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# key: bg
+# name: Rectangular background fill
+# group: Filters
+# atom-selector: .text.xml.svg
+# --
+<filter id="${1:bgFill}" x="-2%" y="0%" width="104%" height="100%">
+	<feFlood flood-color="${2:white}" flood-opacity="${3:1}" result="bg"/>
+	<feMerge>
+		<feMergeNode in="bg"/>
+		<feMergeNode in="SourceGraphic"/>
+	</feMerge>
+</filter>$0

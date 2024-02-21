@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# key: glow
+# name: Outer glow effect
+# group: Filters
+# atom-selector: .text.xml.svg
+# --
+<filter id="${1:glow}" filterUnits="userSpaceOnUse">
+	<feMorphology in="SourceAlpha" operator="dilate" radius="${3:2}" result="thicken"/>
+	<feFlood flood-color="${2:white}" flood-opacity="1" result="glow"/>
+	<feComposite in="glow" in2="thicken" operator="in" result="glow"/>
+	<feGaussianBlur in="glow" result="glow" stdDeviation="${3:3}"/>
+	<feMerge>
+		<feMergeNode in="glow"/>
+		<feMergeNode in="SourceGraphic"/>
+	</feMerge>
+</filter>$0
