@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# key: applet
+# name: Java applet
+# group: Archaic
+# atom-selector: .text.html.basic
+# atom-description-more-url: https://docs.oracle.com/javase/8/docs/technotes/guides/jweb/applet/using_tags.html#applet
+# --
+<applet name="${1:instance-name}" code="${2:ClassName}.class" archive="${3:/path/to/applet.jar}" width="${4:640}" height="${5:480}">
+	${6:<param name="${7:foo}" value="${8:bar}"/>}
+</applet>
+$0
