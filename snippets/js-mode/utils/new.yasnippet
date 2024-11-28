@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: New
+# name: New DOM element
+# group: Utility functions
+# atom-selector: .source.js, .source.ts, .source.tsx
+# --
+const New = (tag, attr) => Object.assign(document.createElement(tag), {...attr});

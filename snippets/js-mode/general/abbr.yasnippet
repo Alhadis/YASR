@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: abbr
+# name: Abbreviated DOM globals
+# group: General
+# atom-selector: .source.js, .source.ts, .source.tsx
+# --
+const win     = window;
+const ${1:doc}     = document;
+const $       = ${1:doc}.querySelector         .bind(${1:doc});
+const $$      = ${1:doc}.querySelectorAll      .bind(${1:doc});
+const id      = ${1:doc}.getElementById        .bind(${1:doc});
+const tags    = ${1:doc}.getElementsByTagName  .bind(${1:doc});
+const classes = ${1:doc}.getElementsByClassName.bind(${1:doc});
+const {head, body, documentElement:root} = ${1:doc};$0
