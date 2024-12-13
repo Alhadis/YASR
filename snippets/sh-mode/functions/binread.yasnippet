@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# key: binread
+# name: Read binary data from stdin
+# group: Utility functions
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+# Read \$1 byte(s) from stdin
+${1:binread}(){
+	while read -r _ ${2:line}; do
+		# shellcheck disable=SC2086
+		set -- \$${2:line}
+		[ \$# = 0 ] && break || printf %s "\$1" && shift
+		[ \$# = 0 ] && break || printf ' %s' "\$@"
+	done <<-END
+	\`dd 2>/dev/null bs="\${1:-1}" count=1 | od -vtx1 | LANG=C tr a-f A-F\`
+	END
+}
