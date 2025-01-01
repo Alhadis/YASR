@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# key: ie-alpha
+# name: MSIE 4-8 opacity effect
+# group: Archaic
+# atom-selector: .source.css
+# atom-description: Non-standard opacity property, expressed as a percentage (0-100)
+# atom-description-more-url: https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/ms532967(v=vs.85)
+# --
+${2:/* IE 4.0 syntax */
+filter: alpha(opacity=${1:100});
+}
+${3:/* IE 5.5 syntax */
+filter: progid:DXImageTransform.Microsoft.Alpha(opacity=${1:100});
+}
+${4:/* IE8 syntax */
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=${1:100})";
+}$0

@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: ie-rot
+# name: MSIE 5.5+ rotation effect
+# group: Archaic
+# atom-selector: .source.css
+# atom-description: Rotation parameter is an integer between 0-3 selecting (respectively) 0°, 90°, 180°, or 270°.
+# atom-description-more-url: https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/ms532918(v=vs.85)
+# --
+${2:/* IE 5.5 syntax */
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=${1:0|1|2|3});
+}
+${3:/* IE8 syntax */
+-ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=${1:0|1|2|3})";
+}$0

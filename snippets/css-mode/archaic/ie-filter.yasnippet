@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# key: ie-filter
+# name: MSIE 4-8 filter effect
+# group: Archaic
+# atom-selector: .source.css
+# atom-description: Non-standard filter property; note the compatibility issues between syntaxes.
+# atom-description-more-url: https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/ms532847(v=vs.85)#downlevel-support-and-internet-explorer-40-filters
+# --
+${3:/* IE 4.0 syntax */
+filter: ${1:filterName}(${2:key=value});
+}
+${4:/* IE 5.5 syntax */
+filter: progid:DXImageTransform.Microsoft.${1:filterName}(${2:key=value});
+}
+${5:/* IE8 syntax */
+-ms-filter: "progid:DXImageTransform.Microsoft.${1:filterName}(${2:key=value})";
+}$0
