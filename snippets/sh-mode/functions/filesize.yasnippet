@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# key: filesize
+# name: Shim for portably printing filesizes using stat(1)
+# group: Utility functions
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+# Resolve command for retrieving filesizes
+${2:gnu_stat}=
+case \`stat -c %F / 2>&1\` in
+	*[Dd]irectory*) ${2:gnu_stat}=1;;
+	*) if command -v gstat >/dev/null 2>&1; then ${2:gnu_stat}=2; fi;;
+esac
+case "$${2:gnu_stat}" in
+	1) ${1:filesize}(){  stat -c %s -- "$@"; };; # GNU, unprefixed
+	2) ${1:filesize}(){ gstat -c %s -- "$@"; };; # GNU, prefixed
+	*) ${1:filesize}(){  stat -f %z -- "$@"; };; # BSD
+esac
+unset ${2:gnu_stat}
+$0
