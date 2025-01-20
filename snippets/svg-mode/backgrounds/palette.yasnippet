@@ -1,0 +1,33 @@
+# -*- mode: snippet -*-
+# key: palette
+# name: RGBA colour palette
+# group: Backgrounds
+# atom-selector: .text.xml.svg, .text.html.basic
+# atom-description-more-url: https://commons.wikimedia.org/wiki/File:Hue_alpha_falloff.svg
+# contributor: Andreasl01
+# --
+${1:<?xml version="1.0" encoding="utf-8"?>
+}<svg${1: xmlns="http://www.w3.org/2000/svg"} width="100%" height="100%" viewBox="0 0 256 128" preserveAspectRatio="none">
+	<defs>
+		<linearGradient id="rgb">
+			<stop stop-color="#f00" offset="0%"/>
+			<stop stop-color="#ff0" offset="16.666%"/>
+			<stop stop-color="#0f0" offset="33.333%"/>
+			<stop stop-color="#0ff" offset="50%"/>
+			<stop stop-color="#00f" offset="66.666%"/>
+			<stop stop-color="#f0f" offset="83.333%"/>
+			<stop stop-color="#f00" offset="100%"/>
+		</linearGradient>
+
+		<linearGradient id="a" x1="0%" y1="0%" x2="0%" y2="100%">
+			<stop stop-color="#fff" offset="0%"/>
+			<stop stop-color="#000" offset="100%"/>
+		</linearGradient>
+
+		<mask id="mask">
+			<rect width="100%" height="100%" fill="url(#a)"/>
+		</mask>
+	</defs>
+	<rect width="100%" height="100%" fill="url(#rgb)" mask="url(#mask)"/>
+</svg>
+$0
