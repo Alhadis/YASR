@@ -1,0 +1,20 @@
+# -*- mode: snippet -*-
+# key: round
+# name: round()
+# group: Utility functions
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+# Round a fractional value to the nearest integer
+round(){
+	set -- "\${1#+}"
+	set -- "\${1%.}"
+	set -- "\$1" "\${1%%.*}" "\${1#*.}"
+	case \${1#-} in *[!.0-9]*|*.*.*) printf >&2 'Invalid number: %s\\n' "\$1"; return 1;; esac
+	case \${1#-} in *[!0-9]*);; *?*) printf '%s\\n' "\$1"; return;; esac
+	shift; case \$1 in
+		-*) set -- - "\$@";;
+		*)  set -- + "\$@";;
+	esac
+	case \$3 in [5-9]*) set -- '' "\$((\$2\${1}1))";; esac
+	printf '%s\\n' "\$2"
+}
