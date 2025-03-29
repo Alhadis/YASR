@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# key: centre
+# name: Centred element
+# group: Rulesets
+# contributor: Ana Tudor <vtib@protonmail.com>
+# atom-selector: .source.css
+# atom-description-more-url: https://bsky.app/profile/anatudor.bsky.social/post/3ley64k4zsc2q
+# --
+.centre{
+	display: grid;
+	& > *{
+		grid-area: 1/1;
+		place-self: center;
+	}
+}
