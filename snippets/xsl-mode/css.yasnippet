@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# key: css
+# name: CSS in XSLT-processed XML
+# atom-selector: .text.xml.xsl
+# --
+<xsl:template match="/">
+	<xsl:processing-instruction name="xml-stylesheet">type="text/css" href="${1:style.css}"</xsl:processing-instruction>
+	<xsl:apply-templates/>
+</xsl:template>
+$0
