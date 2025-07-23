@@ -1,0 +1,37 @@
+# -*- mode: snippet -*-
+# key: edit
+# name: Editor-style path display
+# group: General
+# atom-selector: .text.xml.svg
+# atom-description: Improves selection of shapes using the browser's "Inspect Element" feature
+# --
+<style type="text/css">
+	svg{
+		color-scheme: light dark;
+	}
+	path{
+		fill: none;
+		stroke: currentColor;
+		stroke-opacity: 0.5;
+		stroke-width: 1px;
+		pointer-events: fill;
+		&amp;:hover{
+			marker-mid: url(#vertex);
+			stroke-opacity: 1;
+		}
+	}
+	.f{
+		fill: currentColor;
+		stroke: none;
+	}
+	.b{
+		color: #000;
+	}
+</style>
+<marker id="vertex"
+	refX="2.5"
+	refY="2.5"
+	markerWidth="5"
+	markerHeight="5"
+	markerUnits="strokeWidth"
+><circle r="2.5" cx="2.5" cy="2.5" fill="currentColor"/></marker>
