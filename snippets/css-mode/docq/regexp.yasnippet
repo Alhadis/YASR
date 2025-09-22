@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# key: reg
+# name: regexp()
+# group: Document queries
+# atom-description: Match full URLs against a regular expression
+# atom-selector: .source.css .meta.at-rule.document.header.css
+# atom-description-more-url: https://developer.mozilla.org/docs/Web/CSS/@document#regexp
+# --
+regexp("${1:.*\\\\.wikipedia\\\\.org/wiki/.*}")$0
