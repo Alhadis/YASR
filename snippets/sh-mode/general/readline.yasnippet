@@ -7,4 +7,4 @@
 # --
 while IFS= read -r line; do
 	${2:printf '%s\\n' "\$line"}
-done < "${1:\$filepath}"
+done < ${1:\$filepath}
