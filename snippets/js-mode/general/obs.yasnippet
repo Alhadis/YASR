@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: obs
+# name: MutationObserver
+# group: General
+# atom-selector: .source.js, .source.ts, .source.tsx
+# atom-description-more-url: https://mdn.io/MutationObserver
+# --
+const ${1:observer} = new MutationObserver(changes => {
+	for(const {addedNodes} of changes)
+	for(const node of addedNodes){
+		$0
+	}
+});
+${1:observer}.observe(${2:document.documentElement}, {${3:childList: true, subtree: true}});
