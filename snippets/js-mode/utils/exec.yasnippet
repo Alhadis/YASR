@@ -3,39 +3,45 @@
 # name: exec()
 # group: Utility functions
 # atom-selector: .source.js, .source.ts, .source.tsx
+# atom-description-more-url: https://github.com/Alhadis/Utils/blob/afb0650/lib/shell.mjs#L315-L347
 # --
 /**
  * Execute an external command.
  *
- * Resolves to an object with \`stdin\`, \`stdout\`, and \`code\` properties.
- * Rejects with an error if the subprocess emitted an "error" event. 
- *
+ * @throws {Error} Rejects if the subprocess emits an \`error\` event.
  * @example exec("sed", ["-e", "s/in/out/"], "input");
- * @param {String}   command          - Executed command
- * @param {String[]} argList          - List of arguments/switches
- * @param {String}  [inputData=null]  - Data piped to stdin
- * @param {String}  [outputPath=""]   - File to write stdout to
- * @param {String}  [encoding="utf8"] - Character encoding
- * @return {Promise}
+ * @param {String}       command     - Name of the command to execute.
+ * @param {String[]}     argList     - Arguments/switches passed to command.
+ * @param {String}      [input=null] - Data to pipe to standard input, if any.
+ * @param {ExecOptions} [options={}] - Additional options. See {@link ExecOptions}.
+ * @return {Promise<ExecResult>}
  */
-async function exec(command, argList = [], inputData = null, outputPath = "", encoding = "utf8"){
-	const proc = require("child_process").spawn(command, argList, {
+async function exec(command, argList = [], input = null, options = {}){
+	const defaultEncoding = "utf8";
+	if("string" === typeof options)
+		options = {encoding: options};
+	let {encoding = defaultEncoding, outputPath = ""} = options;
+	const proc = (await import("child_process")).spawn(command, argList, {
+		env: {...process.env, ...options.env},
+		cwd: options.cwd,
 		windowsHide: true,
 		stdio: outputPath
-			? ["pipe", fs.openSync(outputPath, "w"), "pipe"]
+			? ["pipe", (await import("fs")).openSync(outputPath, "w"), "pipe"]
 			:  "pipe",
 	});
 	let stdout = "";
 	let stderr = "";
-	if(null !== inputData){
-		proc.stdin.write(inputData, encoding);
+	if("string" === typeof encoding)
+		encoding = new Array(3).fill(encoding);
+	if(null !== input){
+		proc.stdin.write(input, encoding[0] || defaultEncoding);
 		proc.stdin.end();
 	}
 	if(!outputPath){
-		proc.stdout.setEncoding(encoding);
+		proc.stdout.setEncoding(encoding[1] || defaultEncoding);
 		proc.stdout.on("data", data => stdout += data);
 	}
-	proc.stderr.setEncoding(encoding);
+	proc.stderr.setEncoding(encoding[2] || defaultEncoding);
 	proc.stderr.on("data", data => stderr += data);
 	return new Promise((resolve, reject) => {
 		proc.on("close", code => resolve({code, stdout, stderr}));
