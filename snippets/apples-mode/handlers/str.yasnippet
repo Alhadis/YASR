@@ -1,0 +1,23 @@
+# -*- mode: snippet -*-
+# key: str
+# name: Object stringification handler
+# group: Handlers
+# contributor: Christofer K. <howdy@chri.sk>
+# atom-selector: .source.applescript
+# atom-description-more-url: https://stackoverflow.com/a/57243326
+# --
+to ${1:stringify}(object)
+	if the object's class = text then return the object
+	set tids to my text item delimiters
+	try
+		set s to {_:object} as null
+	on error e
+		set my text item delimiters to "Can’t make {_:"
+		set s to text items 2 thru -1 of e as text
+		set my text item delimiters to "} into type null."
+		set s to text items 1 thru -2 of s as text
+		set my text item delimiters to tids
+	end try
+	s
+end ${1:stringify}
+$0

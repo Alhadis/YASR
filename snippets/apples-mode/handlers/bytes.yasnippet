@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# key: bytes
+# name: Read bytes from a file
+# group: Handlers
+# contributor: Christofer K. <howdy@chri.sk>
+# atom-selector: .source.applescript
+# atom-description-more-url: https://stackoverflow.com/a/57243326
+# --
+to ${1:readBytes} from filepath as text
+	local filepath
+
+	script bytes
+		property length:    get eof of filepath
+		property index:     length mod 2 + 1
+		property shortInts: read filepath as short from index for length - index - 1
+		property list:      {}
+	end script
+
+	if bytes's index = 2 then set the end of the list of bytes to ¬
+		ASCII number of (read filepath for 1)
+
+	repeat with shortInt in bytes's shortInts
+		set abs to (shortInt + 65536) mod 65536
+		set the end of the list of bytes to abs div 256
+		set the end of the list of bytes to abs mod 256
+	end repeat
+
+	return the list of bytes
+end ${1:readBytes}
+$0

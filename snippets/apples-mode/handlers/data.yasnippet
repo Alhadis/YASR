@@ -1,0 +1,37 @@
+# -*- mode: snippet -*-
+# key: data
+# name: Read bytes from a file as raw data
+# group: Handlers
+# contributor: Christofer K. <howdy@chri.sk>
+# atom-selector: .source.applescript
+# atom-description-more-url: https://stackoverflow.com/a/57243326
+# --
+to ${1:readBytes} from filepath as text
+	local filepath
+
+	script bytes
+		property data: read filepath as data
+		property list: {}
+	end script
+
+	script hexdump
+		property chars:  "0123456789ABCDEF"
+		property string: text 11 thru -2 of ${2:stringify}(bytes's data)
+		property hibyte: a reference to text 2 of my string
+		property lobyte: a reference to text 1 of my string
+
+		to decimal()
+			set i to (offset of hibyte in chars) - 1
+			set j to (offset of lobyte in chars) - 1
+			i + j * 16
+		end decimal
+	end script
+
+	repeat ((hexdump's string's length) / 2 - 1) times
+		set the end of the list of bytes to hexdump's decimal()
+		set hexdump's string to hexdump's string's text 3 thru -1
+	end repeat
+
+	return the list of bytes
+end ${1:readBytes}
+$0
