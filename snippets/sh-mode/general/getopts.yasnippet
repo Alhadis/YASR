@@ -1,64 +1,13 @@
 # -*- mode: snippet -*-
-# key: opts
-# name: Getopts boilerplate
+# key: getopts
+# name: Getopts built-in
 # group: General
 # atom-selector: .source.shell
 # --
-#
-# ${1:name}: ${2:Short description of your program.}
-#
-usage="\${0##*/} [-h|--help] [-v|--version] ...files"
-version='v1.0.0'
-
-# Parse command-line switches
-while [ -n "\$1" ]; do case \$1 in
-
-	# Print a brief usage summary and exit
-	-h|--help|-\\?)
-		printf 'Usage: %s\\n' "\$usage"
-		exit ;;
-	
-	# Print a version string and exit
-	-v|--version)
-		printf '%s\\n' "\$version"
-		exit ;;
-
-	# Unbundle short options
-	-[${3:niladic-short-opts}]?*)
-		tail="\${1#??}"
-		head=\${1%"$tail"}
-		shift
-		set -- "\$head" "-\$tail" "\$@"
-		continue ;;
-
-	# Expand parametric values
-	-[${4:monadic-short-opts}]?*|--[!=]*=*)
-		case \$1 in
-			--*) tail=\${1#*=}; head=\${1%%=*} ;;
-			*)   tail=\${1#??}; head=\${1%"$tail"} ;;
-		esac
-		shift
-		set -- "\$head" "\$tail" "\$@"
-		continue ;;
-
-	# Add new switch checks here
-	${5:--option-name})
-		$0
-		break ;;
-
-	# Double-dash: Terminate option parsing
-	--)
-		shift
-		break ;;
-
-	# Invalid option: abort
-	--*|-?*)
-		>&2 printf '%s: Invalid option: "%s"\\n' "\${0##*/}" "\$1"
-		>&2 printf 'Usage: %s\\n' "\$usage"
-		exit 1 ;;
-
-	# Argument not prefixed with a dash
-	*) break ;;
-
-esac; shift
-done
+while getopts ${1:n\:h} ${2:option}; do
+	case \$${2:option} in
+		${3:${4:n}) ${5:name=\$OPTARG};;}
+		*) echo >&2 "Usage: ${6:\${0\}: ${7:[-n name]}}";;
+	esac
+done; shift \$((OPTIND-1))
+$0
