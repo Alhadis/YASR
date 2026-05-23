@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# key: filter
+# name: Embedded SVG filter
+# group: Properties
+# atom-selector: .source.css
+# --
+filter: url('data:image/svg+xml,\\
+	<?xml version="1.0" encoding="utf-8"?>\\
+	<svg version="1.1" xmlns="http://www.w3.org/2000/svg">\\
+		<filter id="f">\\
+			${1:<feFlood flood-color="%23ff0" result="a"/>\\
+			<feComposite in="a" in2="SourceGraphic" operator="in"/>}\\
+		</filter>\\
+	</svg>#f');$0
