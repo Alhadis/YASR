@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# key: paper
+# name: Paper texture
+# group: Filters
+# atom-selector: .text.xml.svg
+# atom-description-more-url: https://tympanus.net/codrops/2019/02/19/svg-filter-effects-creating-texture-with-feturbulence/
+# contributor: Sara Soueidan <hello@sarasoueidan.com>
+# --
+<filter id="${1:paper}" x="0%" y="0%" width="100%" height="100%">
+	<feTurbulence type="fractalNoise" baseFrequency="${2:0.04}" numOctaves="${3:5}" result="noise"/>
+	<feDiffuseLighting in="noise" lighting-color="${4:white}" surfaceScale="${5:2}">
+		<feDistantLight azimuth="${6:45}" elevation="${7:60}"/>
+	</feDiffuseLighting>
+</filter>
+${8:<rect width="100%" height="100%" filter="url(#${1:paper})" fill="${9:none}"/>
+}$0
