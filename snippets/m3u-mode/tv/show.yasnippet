@@ -1,0 +1,15 @@
+# -*- mode: snippet -*-
+# key: show
+# name: Serial boilerplate
+# group: TV series playlists
+# atom-selector: .source.m3u
+# atom-selector-label: M3U playlists
+# --
+#EXTM3U
+#PLAYLIST:${1:SERIES_TITLE}
+#EXTGENRE:${2:SERIES_GENRE}
+
+#EXTGRP:Season ${3:1} (${4:SEASON_YEAR_START}–${5:SEASON_YEAR_END})
+#EXTINF:${9:FILE_LENGTH},${1:SERIES_TITLE} - Season ${3:1}, Episode ${6:1}: ${7:EPISODE_TITLE} (${8:EPISODE_YEAR})
+#EXTBYT:${10:FILE_SIZE}
+${11:FILE_PATH}

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# key: track
+# name: Album track entry
+# group: Music playlists
+# atom-selector: .source.m3u
+# --
+#EXTINF:${3:DURATION},${1:ARTIST} - ${4:TRACK_TITLE}
+#EXTBYT:${7:FILESIZE}
+${1:ARTIST}/${2:ALBUM}/${5:TRACK_NUMBER} ${4:TRACK_TITLE}.${6:mp3}
+$0

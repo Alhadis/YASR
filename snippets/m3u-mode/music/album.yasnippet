@@ -1,0 +1,17 @@
+# -*- mode: snippet -*-
+# key: album
+# name: Album boilerplate
+# group: Music playlists
+# atom-selector: .source.m3u
+# --
+#EXTM3U
+#PLAYLIST:${1:ARTIST} - ${2:ALBUM} (${3:YEAR})
+#EXTART:${1:ARTIST}
+#EXTALB:${2:ALBUM} (${3:YEAR})
+#EXTGENRE:${4:GENRE}
+#EXTALBUMARTURL:${5:COVER_ART_URL}
+
+#EXTINF:${6:DURATION},${1:ARTIST} - ${7:TRACK_TITLE}
+#EXTBYT:${10:FILESIZE}
+${1:ARTIST}/${2:ALBUM}/${8:TRACK_NUMBER} ${7:TRACK_TITLE}.${9:mp3}
+$0
