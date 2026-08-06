@@ -1,0 +1,45 @@
+# -*- mode: snippet -*-
+# key: mong
+# name: Mongolian script support
+# group: Rulesets
+# atom-selector: .source.css
+# --
+/** Mongolian script */
+@font-face {
+	font-family: ${1:Mongolian};
+	font-weight: normal;
+	font-style: normal;
+	src:
+		local("Menk Hawang Tig"),
+		local("Menk Qagan Tig"),
+		local("Menk Garqag Tig"),
+		local("Menk Har_a Tig"),
+		local("Menk Scnin Tig"),
+		local("Oyun Gurban Ulus Tig"),
+		local("Oyun Qagan Tig"),
+		local("Oyun Garqag Tig"),
+		local("Oyun Har_a Tig"),
+		local("Oyun Scnin Tig"),
+		local("Oyun Agula Tig"),
+		local("Mongolian Baiti"),
+		local("Noto Sans Mongolian"),
+		local("Mongolian Universal White"),
+		local("Mongol Usug"),
+		local("Mongolian White"),
+		local("MongolianScript"),
+		local("Code2000"),
+		local("Menksoft Qagan");
+}
+
+${2:*:lang(mn):not(:lang(mn-Cyrl)){
+	font-family: ${1:Mongolian};
+	font-size: ${3:2em};
+	text-orientation:     sideways;
+	-webkit-writing-mode: vertical-lr;
+	-o-writing-mode:      vertical-lr;
+	-ms-writing-mode:     tb-lr;
+	writing-mode:         tb-lr;
+	writing-mode:         vertical-lr;
+	vertical-align:       text-top;
+}}
+$0
