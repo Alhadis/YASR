@@ -1,0 +1,27 @@
+# -*- mode: snippet -*-
+# key: nat
+# name: Function.prototype.isNative
+# group: Utility functions
+# atom-selector: .source.js, .source.ts, .source.tsx
+# atom-description: Getter property that reports whether function object is natively-defined or not
+# atom-description-more-url: https://github.com/Alhadis/.atom/commit/9a06064b889525c37d39d22523fc084eec1f4ca9
+# --
+const desc = Object.getOwnPropertyDescriptor(Function.prototype, "isNative");
+if(null == desc || desc.configurable && "function" !== typeof desc.get
+|| !(false === (() => {}).isNative && true  === Function.isNative)){
+	const fnSource = Function.prototype.toString;
+	if("function" === typeof fnSource && {}.toString !== fnSource){
+		const user = (function(){ return "FooBar123"; }).toString();
+		let native = fnSource.call(Function.constructor);
+		if(user !== native && user.includes("FooBar123") && !native.includes("FooBar123")){
+			native = native.slice(native.lastIndexOf("{"));
+			if(native.length > 3
+			&& fnSource.call(isFinite).endsWith(native)
+			&&!fnSource.call(() => {}).endsWith(native))
+				Object.defineProperty(Function.prototype, "isNative", {
+					get(){ return fnSource.call(this).endsWith(native); },
+					configurable: true,
+				});
+		}
+	}
+}
