@@ -4,11 +4,19 @@
 # group: General
 # atom-selector: .source.js, .source.ts, .source.tsx
 # --
-#!/usr/bin/env node
-// <!DOCTYPE html><html><body><script type="module">
-import {isBrowser$2} from "${1:./EAL}";
+//bin/test 1; exec node "\$0" -- "\$@" # -*- js -*-
+/* <!DOCTYPE html><html><body><script>
+	document.currentScript.previousSibling.remove();
+	document.currentScript.remove();
+</script><script type="module">/**/
+"use strict";
 
-if(isBrowser()){
+const isBrowser = !!(() => {
+	try{ const {all} = document; return "undefined" === typeof all && null === all(); }
+	catch(e){}
+})();
+
+if(isBrowser){
 	$0
 }
 else{
