@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# key: browser
+# name: Detect browser environment
+# group: General
+# atom-selector: .source.js, .source.ts, .source.tsx
+# --
+const isBrowser = !!(() => {
+	try{ const {all} = document; return "undefined" === typeof all && null === all(); }
+	catch(e){}
+})();
