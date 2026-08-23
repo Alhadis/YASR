@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# key: tracecanvas
+# name: Trace calls to canvas drawing-context methods
+# group: Utility functions
+# atom-selector: .source.js, .source.ts, .source.tsx
+# atom-description: Hack for “spying” on a webapp's canvas drawing.
+# --
+const pro = CanvasRenderingContext2D.prototype;
+const fnSrc = Function.prototype.toString;
+for(const [name, desc] of Object.entries(Object.getOwnPropertyDescriptors(pro))){
+	if("function" === typeof desc.value){
+		const method = desc.value;
+		if(!/\\[native code\\]\\s*\\}\\s*\$/i.test(fnSrc.call(method)))
+			continue;
+		desc.value = {__proto__: null, [name]: Object.defineProperties(function(...args){
+			${1:console.trace("Calling " + name);}
+			const rv = method.apply(this, args);
+			$2return rv;
+		},{
+			length: Object.getOwnPropertyDescriptor(method, "length"),
+			name:   Object.getOwnPropertyDescriptor(method, "name"),
+		})}[name];
+		Object.defineProperty(pro, name, desc);
+	}
+}$0
