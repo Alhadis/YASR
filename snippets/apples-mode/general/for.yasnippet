@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# key: for
+# name: C-like repeat statement with counter variable
+# group: General
+# atom-selector: .source.applescript
+# --
+repeat with ${3:i} from ${4:1} to ${1:end} by ${5:1}
+	${2:-- statements}$0
+end repeat
