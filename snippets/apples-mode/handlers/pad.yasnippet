@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# key: pad
+# name: String padding handler
+# group: Handlers
+# atom-selector: .source.applescript
+# --
+-- Pad string until its length matches the desired size
+to ${1:padString}(input, maxLength, padding)
+	set input to input as Text
+	set padding to first character of (padding as Text)
+	set append to false
+	if maxLength < 0 then
+		set append to true
+		set maxLength to -maxLength
+	end
+	repeat while length of input < maxLength
+		if append then
+			set input to input & padding
+		else
+			set input to padding & input
+		end
+	end repeat
+	return input
+end ${1:padString}
+$0
