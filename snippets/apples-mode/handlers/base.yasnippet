@@ -1,0 +1,64 @@
+# -*- mode: snippet -*-
+# key: base
+# name: Arbitrary radix conversion handler
+# group: Handlers
+# atom-selector: .source.applescript
+# --
+-- Convert a number between arbitrary radices
+to ${1:convertBase}(value, toRadix, fromRadix)
+	-- Sanitise arguments
+	set value     to characters of (value as Text)
+	set toRadix   to toRadix   as Integer
+	set fromRadix to fromRadix as Integer
+	if toRadix ≤ 0 or fromRadix ≤ 0 then
+		set badValue to fromRadix
+		if toRadix ≤ 0 then set badValue to toRadix
+		error "Radix must be a positive, non-zero integer" number -1719 from badValue
+	end
+
+	-- Extract sign
+	set negated to false
+	if {"-", "+"} contains first item of value then
+		if first item of value equals "-" then set negated to true
+		set value to items 2 thru -1 of value
+	end
+
+	-- Resolve the input's value in decimal
+	set newValue to 0
+	set newDigits to a reference to {}
+	set digits to "0123456789ABCDEF"
+	set digitCount to length of digits
+	set len to length of value
+	ignoring case
+		repeat with i from 1 to len
+			set digit to item i of value
+			set pos to offset of digit in digits
+			if pos equals 0 then error "Invalid digit" number -1700 from digit
+			set newValue to newValue + (pos - 1) * (fromRadix ^ (len - i))
+		end repeat
+	end ignoring
+
+	-- Construct a list of digits using the targeted radix
+	repeat while newValue > 0
+		set digitValue to newValue mod toRadix
+		set digitStr to ""
+		repeat
+			set nth to (digitValue mod digitCount) + 1
+			set digit to character nth of digits
+			set digitStr to digitStr & digit
+			set digitValue to digitValue - digitCount
+			if digitValue < 0 then exit
+		end repeat
+		copy digitStr to the beginning of newDigits
+		set newValue to newValue div toRadix
+	end repeat
+
+	-- Concatenate digits and sign prefix
+	if negated then copy "-" to the beginning of newDigits
+	set tid to my text item delimiters
+	set my text item delimiters to ""
+	set newDigits to the (contents of newDigits) as String
+	set my text item delimiters to tid
+	return newDigits
+end ${1:convertBase}
+$0
