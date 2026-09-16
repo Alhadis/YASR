@@ -1,28 +1,34 @@
 # -*- mode: snippet -*-
 # key: bytes
-# name: Read bytes from a file
+# name: Convert data object to list of byte values
 # group: Handlers
 # contributor: Christofer K. <howdy@chri.sk>
 # atom-selector: .source.applescript
 # atom-description-more-url: https://stackoverflow.com/a/57243326
 # --
-to ${1:readBytes} from filepath as text
-	local filepath
-
+-- Convert a data object to an array of byte values
+to ${1:readBytes} from dataSource as data
 	script bytes
-		property length:    get eof of filepath
-		property index:     length mod 2 + 1
-		property shortInts: read filepath as short from index for length - index - 1
-		property list:      {}
+		property data: dataSource
+		property list: {}
 	end script
 
-	if bytes's index = 2 then set the end of the list of bytes to ¬
-		ASCII number of (read filepath for 1)
+	script hexdump
+		property chars:  "0123456789ABCDEF"
+		property string: text 11 thru -2 of ${2:stringify}(bytes's data)
+		property hibyte: a reference to text 2 of my string
+		property lobyte: a reference to text 1 of my string
+		to decimal()
+			set i to (offset of hibyte in chars) - 1
+			set j to (offset of lobyte in chars) - 1
+			i + j * 16
+		end decimal
+	end script
 
-	repeat with shortInt in bytes's shortInts
-		set abs to (shortInt + 65536) mod 65536
-		set the end of the list of bytes to abs div 256
-		set the end of the list of bytes to abs mod 256
+	repeat ((hexdump's string's length) / 2) times
+		set the end of the list of bytes to hexdump's decimal()
+		if length of hexdump's string ≤ 2 then exit
+		set hexdump's string to hexdump's string's text 3 thru -1
 	end repeat
 
 	return the list of bytes
