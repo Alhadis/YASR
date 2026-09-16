@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# key: exists
+# name: Record property existence predicate
+# group: Handlers
+# atom-selector: .source.applescript
+# --
+-- Return true if a property with the given label exists in a record object
+to ${1:fieldExists} in object for label
+	set test to run script "{|" & label & "|:true}"
+	return length of object equals length of (object & test)
+end ${1:fieldExists}
+$0
