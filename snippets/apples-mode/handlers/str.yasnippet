@@ -6,6 +6,7 @@
 # atom-selector: .source.applescript
 # atom-description-more-url: https://stackoverflow.com/a/57243326
 # --
+-- Convert an object to its string representation
 to ${1:stringify}(object)
 	if the object's class = text then return the object
 	set tids to my text item delimiters
