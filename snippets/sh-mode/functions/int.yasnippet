@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# key: int
+# name: is_int()
+# group: Utility functions
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+# Return true if argument is a valid integer
+is_int(){
+	case \$1 in
+		*[!-+0-9]*|'') return 1;;
+		*) case \$1 in
+			[-+]*[-+]*|[!-+]*[-+]) return 1;;
+			[-+]?*) return 0;;
+		esac;;
+	esac
+}
