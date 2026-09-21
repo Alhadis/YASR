@@ -1,0 +1,16 @@
+# -*- mode: snippet -*-
+# key: nth
+# name: nth()
+# group: Utility functions
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+# Select the item \$1 of the arguments that follow
+nth(){
+	if test "\$1" -lt 0; then
+		eval "shift && set -- \\"\$(((\$#-1)+(\$1+1)))\\" \\"\\\$@\\""
+	fi
+	if test "\$1" -gt 0 && test "\$1" -le \$((\$#-1))
+		then eval "echo \\"\\\$\$((\$1+1))\\""
+		else return 1
+	fi
+}
