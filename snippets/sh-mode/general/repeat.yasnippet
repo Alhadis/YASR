@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# key: repeat
+# name: Print a character repeated 𝑁 times
+# group: General
+# atom-selector: .source.shell, .meta.scope.recipe.makefile
+# --
+printf %${1:30}.s${4: | tr ' ' '${2:=}}'$3$0
