@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# key: hidden
+# name: Set hidden property
+# group: Atom
+# atom-selector: .source.js
+# --
+const v8Util = process._linkedBinding("electron_common_v8_util");
+v8Util.setHiddenValue(${1:globalThis}, "${2:secretProperty}", ${3:value});
+$0
